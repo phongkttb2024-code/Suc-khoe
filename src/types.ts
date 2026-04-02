@@ -1,6 +1,7 @@
 export interface Profile {
   id: string;
   full_name: string | null;
+  avatar_url: string | null;
   age: number | null;
   gender: string | null;
   blood_type: string | null;
@@ -16,6 +17,7 @@ export interface HealthRecord {
   diagnosis: string;
   notes: string | null;
   doctor: string | null;
+  prescription_url: string | null;
   created_at: string;
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "HealthTrack Pro",
-  "description": "Ứng dụng theo dõi sức khỏe cá nhân với đăng nhập Google, quản lý hồ sơ bệnh án và chỉ số sức khỏe.",
+  "name": "Theo Dõi Sức Khoẻ",
+  "description": "Ứng dụng theo dõi sức khỏe cá nhân, quản lý hồ sơ bệnh án và chỉ số sức khỏe.",
   "requestFramePermissions": []
 }

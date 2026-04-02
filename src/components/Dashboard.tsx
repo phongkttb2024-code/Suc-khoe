@@ -3,6 +3,7 @@ import { User } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
 import { Profile as ProfileType } from '../types';
 import { Activity, Heart, Droplets, Ruler, Weight } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 interface DashboardProps {
   user: User;
@@ -41,7 +42,7 @@ export function Dashboard({ user }: DashboardProps) {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white shadow-lg">
+      <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-white shadow-lg dark:shadow-blue-900/20">
         <h2 className="text-lg font-medium opacity-90">Xin chào,</h2>
         <h1 className="text-2xl font-bold">{profile?.full_name || user.email?.split('@')[0]}</h1>
         <p className="mt-4 text-sm opacity-80 italic">"Sức khỏe là vàng. Hãy chăm sóc bản thân mỗi ngày."</p>
@@ -49,50 +50,46 @@ export function Dashboard({ user }: DashboardProps) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {stats.map((stat) => (
-          <div key={stat.label} className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm">
-            <div className={cn('rounded-xl p-3', stat.bg)}>
+          <div key={stat.label} className="flex items-center gap-4 rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-100 dark:border-slate-700">
+            <div className={cn('rounded-xl p-3', stat.bg, 'dark:bg-opacity-10')}>
               <stat.icon className={stat.color} size={24} />
             </div>
             <div>
-              <p className="text-xs font-medium text-slate-500">{stat.label}</p>
-              <p className="text-lg font-bold text-slate-900">{stat.value}</p>
+              <p className="text-xs font-medium text-slate-500 dark:text-slate-400">{stat.label}</p>
+              <p className="text-lg font-bold text-slate-900 dark:text-white">{stat.value}</p>
             </div>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-slate-500">
+        <div className="rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+          <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
             <Ruler size={18} />
             <span className="text-sm font-medium">Chiều cao</span>
           </div>
-          <p className="mt-2 text-2xl font-bold text-slate-900">
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
             {profile?.height ? `${profile.height} cm` : '--'}
           </p>
         </div>
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <div className="flex items-center gap-2 text-slate-500">
+        <div className="rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+          <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
             <Weight size={18} />
             <span className="text-sm font-medium">Cân nặng</span>
           </div>
-          <p className="mt-2 text-2xl font-bold text-slate-900">
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
             {profile?.weight ? `${profile.weight} kg` : '--'}
           </p>
         </div>
       </div>
 
-      <div className="rounded-2xl bg-white p-6 shadow-sm">
-        <h3 className="text-lg font-bold text-slate-900">Tình trạng hiện tại</h3>
-        <div className="mt-4 flex items-center gap-3 rounded-xl bg-green-50 p-4 text-green-700">
+      <div className="rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white">Tình trạng hiện tại</h3>
+        <div className="mt-4 flex items-center gap-3 rounded-xl bg-green-50 dark:bg-green-900/10 p-4 text-green-700 dark:text-green-400">
           <div className="h-3 w-3 rounded-full bg-green-500 animate-pulse"></div>
           <span className="text-sm font-medium">Sức khỏe của bạn đang ở mức ổn định</span>
         </div>
       </div>
     </div>
   );
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
 }
